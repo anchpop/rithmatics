@@ -34,7 +34,7 @@ public class LineOfVigor : MonoBehaviour {
         waveDistanceTraveled += (Time.deltaTime) * speed;
         if (sineWaves.Count > 0)
         {
-            sineWaves.First().increaseBackTruncTo(waveDistanceTraveled * 2);
+            sineWaves.First().increaseBackTruncTo(waveDistanceTraveled);
             sineWaves.Last().increaseFrontExtendTo(waveDistanceTraveled);
         }
         sineWaves = sineWaves.Where(s => s.isLineValid()).ToList();

@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SineRenderer : MonoBehaviour {
 
@@ -16,7 +17,10 @@ public class SineRenderer : MonoBehaviour {
 
     // Use this for initialization
     public void Start () {
-        line = gameObject.AddComponent<LineRenderer>();
+        if (gameObject.GetComponent<LineRenderer>() == null)
+            line = gameObject.AddComponent<LineRenderer>();
+        else
+            line = gameObject.GetComponent<LineRenderer>();
         line.material = new Material(Shader.Find("Particles/Additive"));
         line.SetColors(color, color);
         renderLine(0, 0);
@@ -24,6 +28,10 @@ public class SineRenderer : MonoBehaviour {
     
     public void setParams(float rwidth, float ramplitude, float rwavelength, float rtesselationsPerPeriod, float rperiods, Color rcolor)
     {
+        if (gameObject.GetComponent<LineRenderer>() == null)
+            line = gameObject.AddComponent<LineRenderer>();
+        else
+            line = gameObject.GetComponent<LineRenderer>();
         width = rwidth;
         amplitude = ramplitude;
         wavelength = rwavelength;
